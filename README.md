@@ -1,2 +1,0 @@
-# Myshop
-no mota
