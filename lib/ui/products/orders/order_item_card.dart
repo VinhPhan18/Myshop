@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../../models/order_item.dart';
 
 class OrderItemCard extends StatefulWidget {
@@ -13,7 +12,6 @@ class OrderItemCard extends StatefulWidget {
   @override
   State<OrderItemCard> createState() => _OrderItemCardState();
 }
-
 class _OrderItemCardState extends State<OrderItemCard> {
   var _expanded = false;
 
