@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../models/cart_item.dart';
-import '../../models/order_item.dart';
+import '../../../models/cart_item.dart';
+import '../../../models/order_item.dart';
 
 class OrdersManager with ChangeNotifier {
   final List<OrderItem> _orders = [
@@ -11,7 +11,7 @@ class OrdersManager with ChangeNotifier {
       products: [
         CartItem(
           id: 'c1',
-          title: 'Red Shirt',
+          title: 'Red Shift',
           price: 29.99,
           quantity: 2,
         )
@@ -19,11 +19,11 @@ class OrdersManager with ChangeNotifier {
       dateTime: DateTime.now(),
     )
   ];
-  int get orderCount {
-    return _orders.length;
-  }
+      int get orderCount {
+        return _orders.length;
+      }
 
-  List<OrderItem> get orders {
-    return [..._orders];
-  }
+      List<OrderItem> get orders {
+        return [..._orders];
+      }
 }

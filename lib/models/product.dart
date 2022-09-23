@@ -22,7 +22,7 @@ class Product {
     double? price,
     String? imageUrl,
     bool? isFavorite,
-  }) {
+  })  {
     return Product(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -30,6 +30,6 @@ class Product {
       price: price ?? this.price,
       imageUrl: imageUrl ?? this.imageUrl,
       isFavorite: isFavorite ?? this.isFavorite,
-    );
+      );
   }
 }

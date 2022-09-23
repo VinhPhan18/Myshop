@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../models/cart_item.dart';
+
+import '../../../models/cart_item.dart';
 import '../shared/dialog_utils.dart';
 
 class CartItemCard extends StatelessWidget {
@@ -33,8 +34,7 @@ class CartItemCard extends StatelessWidget {
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) {
         return showConfirmDialog(
-          context,
-          'Do you want to remove the item from the cart?',
+          context, 'Do you want to remove the item from the cart?',
         );
       },
       onDismissed: (direction) {
@@ -43,7 +43,6 @@ class CartItemCard extends StatelessWidget {
       child: buildItemCard(),
     );
   }
-
   Widget buildItemCard() {
     return Card(
       margin: const EdgeInsets.symmetric(

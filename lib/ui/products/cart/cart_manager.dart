@@ -1,11 +1,11 @@
-import '../../models/cart_item.dart';
+import '../../../models/cart_item.dart';
 
 class CartManager {
   final Map<String, CartItem> _items = {
     'p1': CartItem(
       id: 'c1',
-      title: 'Red Shirt',
-      price: 29.99,
+      title: 'Red Shift',
+      price: 29.29,
       quantity: 2,
     ),
   };
@@ -14,7 +14,7 @@ class CartManager {
     return _items.length;
   }
 
-  List<CartItem> get products {
+  List <CartItem> get products {
     return _items.values.toList();
   }
 
@@ -24,7 +24,6 @@ class CartManager {
 
   double get totalAmount {
     var total = 0.0;
-
     _items.forEach((key, cartItem) {
       total += cartItem.price * cartItem.quantity;
     });
