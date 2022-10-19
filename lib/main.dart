@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/products/cart/cart_manager.dart';
-import 'package:myshop/ui/products/orders/order_manager.dart';
-import 'ui/products/products_manager.dart';
-import 'ui/products/product_detail_screen.dart';
-import 'ui/products/product_overview_screen.dart';
-import 'ui/products/user_products_screen.dart';
-import './ui/products/cart/cart_screen.dart';
-import 'ui/products/orders/orders_screen.dart';
-
+import 'package:myshop/ui/orders/orders_screen.dart';
+import 'package:myshop/ui/products/edit_product_screen.dart';
+import 'package:myshop/ui/products/product_overview_screen.dart';
+import 'package:myshop/ui/products/products_manager.dart';
+import 'package:myshop/ui/products/screens.dart';
+import 'package:myshop/ui/products/user_products_screen.dart';
 import 'package:provider/provider.dart';
+import 'ui/screens.dart';
+
+// import 'ui/products/product_detail_screen.dart';
+// import 'ui/products/products_manager.dart';
+// import 'ui/products/product_overview_screen.dart';
+// import 'ui/products/user_products_screen.dart';
+// import 'ui/cart/cart_screen.dart';
+// import 'ui/orders/orders_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +22,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -27,31 +31,25 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (ctx) => CartManager(),
-                   ),
+        ),
         ChangeNotifierProvider(
           create: (ctx) => OrdersManager(),
         ),
       ],
       child: MaterialApp(
-
         title: 'My Shop',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'Lato',
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.purple,
-          ).copyWith(
-            secondary: Colors.deepOrange,
-          ),
-        ),
+            fontFamily: 'Lato',
+            colorScheme:
+                ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
+              secondary: Colors.deepOrange,
+            )),
         home: const ProductsOverviewScreen(),
         routes: {
-          CartScreen.routeName:
-            (ctx) => const CartScreen(),
-          OrdersScreen.routeName:
-            (ctx) => const OrdersScreen(),
-          UserProductsScreen.routeName:
-            (ctx) => const UserProductsScreen(),
+          CartScreen.routeName: (ctx) => const CartScreen(),
+          OrdersScreen.routeName: (ctx) => const OrdersScreen(),
+          UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == ProductDetailScreen.routeName) {
@@ -59,26 +57,32 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (ctx) {
                 return ProductDetailScreen(
-                 ctx.read<ProductsManager>().findById(productId),
+                  ctx.read<ProductsManager>().findById(productId),
+                );
+              },
+            );
+          }
+
+          if (settings.name == EditProductScreen.routeName) {
+            final productId = settings.arguments as String?;
+            return MaterialPageRoute(
+              builder: (ctx) {
+                return EditProductScreen(
+                  productId != null ?
+                  ctx.read<ProductsManager>().findById(productId):null,
                 );
               },
             );
           }
           return null;
         },
-      //home: const SafeArea(
-        //child: OrdersScreen(),
-        //child: CartScreen(),
-        //child: UserProductsScreen(),
-        // child: ProductsOverviewScreen(),
-        //),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -157,7 +161,6 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-  
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
