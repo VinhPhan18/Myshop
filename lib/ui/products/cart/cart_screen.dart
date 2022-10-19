@@ -66,7 +66,14 @@ class CartScreen extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor,
             ),
             TextButton(
-              onPressed: () {
+              onPressed: cart.totalAmount <= 0 
+              ? null
+              : () {
+                context.read <OrdersManager>().addOrder (
+                    cart.products,
+                    cart.totalAmount,
+                );
+                cart.clear ();
                 print('An order has been added');
               },
               style: TextButton.styleFrom(
